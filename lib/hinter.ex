@@ -18,15 +18,27 @@ defmodule Hinter do
   @right key(:arrow_right)
   @enter key(:enter)
   @spacebar key(:space)
-  @backspace key(:backspace)
+  @delete_keys for keyId <- [:backspace, :backspace2, :delete], do: key(keyId)
   def update(model, msg) do
     case msg do
-      {:event, %{key: @left}} -> %{model | tab: Integer.mod(model.tab-1,2)}
-      {:event, %{key: @right}} -> %{model | tab: Integer.mod(model.tab+1,2)}
-      {:event, %{key: @enter}} -> %{model | value: save(model.input)}
-      {:event, %{key: @backspace}} -> %{model | input: String.slice(model.input, 0..-2)}
-      {:event, %{key: @spacebar}} -> %{model | input: model.input <> " "}
-      {:event, %{ch: char}} -> %{model | input: model.input <> <<char::utf8>>}
+      {:event, %{key: @left}} -> %{
+        model | tab: Integer.mod(model.tab - 1, 2)
+      }
+      {:event, %{key: @right}} -> %{
+        model | tab: Integer.mod(model.tab + 1, 2)
+      }
+      {:event, %{key: @enter}} -> %{
+        model | value: save(model.input)
+      }
+      {:event, %{key: key}} when key in @delete_keys -> %{
+        model | input: String.slice(model.input, 0..-2)
+      }
+      {:event, %{key: @spacebar}} -> %{
+        model | input: model.input <> " "
+      }
+      {:event, %{ch: char}} -> %{
+        model | input: model.input <> <<char::utf8>>
+      }
       _ -> model
     end
   end
@@ -71,7 +83,7 @@ defmodule Hinter do
   end
 end
 
-Local.Repository.start_link("o")
+Local.Repository.start_link("")
 Ratatouille.run(Hinter)
 
 
