@@ -21,7 +21,8 @@ defmodule Hinter.MixProject do
   # Run "mix help deps" to learn about dependencies.
   def deps do
     [
-      {:ratatouille, "~> 0.5.0"}
+      {:ratatouille, "~> 0.5.0"},
+      {:ex_const, "~> 0.1.0"}
     ]
   end 
 end
