@@ -3,7 +3,7 @@
 Terminal User Interface for a simple key-value store. The original intent was to use it for storing _hints_ about a particular issue/problem, hence the name.
 
 ## Disclaimer
-- This is a fun project. I am primarily doing this to get more fluently in functional programming.
+- This is a fun project. I am primarily doing this to become more fluent in functional programming.
 
 ## Planned features
 - [ ] Add key-value pair
