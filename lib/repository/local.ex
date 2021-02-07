@@ -1,4 +1,4 @@
-defmodule Local.Repository do
+defmodule Repository.Local do
   use Agent
 
   def start_link(initial_value) do
@@ -10,7 +10,7 @@ defmodule Local.Repository do
   end
 
   def add_hint(new_value) do
-    Agent.update(__MODULE__, fn (old_value) -> new_value end)
+    Agent.update(__MODULE__, fn (_old_value) -> new_value end)
   end 
 end
 

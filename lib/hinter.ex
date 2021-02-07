@@ -3,7 +3,7 @@ defmodule Hinter do
 
   import Ratatouille.Constants, only: [key: 1]
   import Ratatouille.View
-  alias Local.Repository, as: Repo
+  alias Repository.Local, as: Repo
 
   @tabs %{0 => :add, 1 => :rmv}
   def init(_context) do
@@ -83,7 +83,7 @@ defmodule Hinter do
   end
 end
 
-Local.Repository.start_link("")
+Repository.Local.start_link("")
 Ratatouille.run(Hinter)
 
 
