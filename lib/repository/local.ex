@@ -10,8 +10,6 @@ defmodule Repository.Local do
   end
 
   def add_hint(new_value) do
-    Agent.update(__MODULE__, fn (_old_value) -> new_value end)
-  end 
+    Agent.update(__MODULE__, fn _old_value -> new_value end)
+  end
 end
-
-

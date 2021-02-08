@@ -24,5 +24,5 @@ defmodule Hinter.MixProject do
       {:ratatouille, "~> 0.5.0"},
       {:ex_const, "~> 0.1.0"}
     ]
-  end 
+  end
 end

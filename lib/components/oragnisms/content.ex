@@ -1,5 +1,4 @@
 defmodule Organisms.Content do
-
   import Ratatouille.View
   alias Repository.Local, as: Repo
 
