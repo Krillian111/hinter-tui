@@ -28,3 +28,4 @@ hinter-*.tar
 
 # IDE
 .history
+.idea
