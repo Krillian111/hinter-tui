@@ -6,7 +6,7 @@ defmodule Organisms.Content do
     row do
       column(size: 30) do
         label(content: "Tab: #{tab}")
-        label(content: "Repo: #{Repo.value()}")
+        label(content: "Repo: #{Repo.value(tab)}")
         label(content: "Input: #{input}")
       end
     end

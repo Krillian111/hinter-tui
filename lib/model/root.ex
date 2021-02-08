@@ -1,12 +1,11 @@
 defmodule Model.Root do
-  import Ratatouille.Constants, only: [key: 1]
   alias Repository.Local, as: Repo
   require Keys
 
   def init() do
     %{
       tab: 0,
-      value: Repo.value(),
+      value: Repo.value(0),
       input: ""
     }
   end
@@ -16,20 +15,20 @@ defmodule Model.Root do
       {:event, %{key: Keys.left()}} ->
         %{
           model
-          | tab: Integer.mod(model.tab - 1, 2)
+          | tab: Integer.mod(model.tab - 1, 2),
+            input: ""
         }
 
       {:event, %{key: Keys.right()}} ->
         %{
           model
-          | tab: Integer.mod(model.tab + 1, 2)
+          | tab: Integer.mod(model.tab + 1, 2),
+            input: ""
         }
 
       {:event, %{key: Keys.enter()}} ->
-        %{
-          model
-          | value: save(model.input)
-        }
+        save_hint(model.tab, model.input)
+        model
 
       {:event, %{key: key}} when key in Keys.delete_keys() ->
         %{
@@ -54,8 +53,7 @@ defmodule Model.Root do
     end
   end
 
-  defp save(to_save) do
-    Repo.add_hint(to_save)
-    to_save
+  defp save_hint(key, value) do
+    Repo.add_hint(key, value)
   end
 end
