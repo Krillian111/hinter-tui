@@ -1,15 +1,15 @@
-defmodule Organisms.Navigation do
+defmodule Hinter.Organisms.Navigation do
   import Ratatouille.View
-  require Ui
+  require Hinter.Ui
 
   def render(active_tab) do
     row do
       column(size: 10) do
-        menu_item("Add", active_tab == Ui.tab_add())
+        menu_item("Add", active_tab == Hinter.Ui.tab_add())
       end
 
       column(size: 10) do
-        menu_item("Remove", active_tab == Ui.tab_rmv())
+        menu_item("Remove", active_tab == Hinter.Ui.tab_rmv())
       end
     end
   end

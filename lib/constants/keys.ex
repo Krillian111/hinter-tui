@@ -1,4 +1,4 @@
-defmodule Keys do
+defmodule Hinter.Keys do
   use Const
   import Ratatouille.Constants, only: [key: 1]
 

@@ -1,42 +1,42 @@
-defmodule Model.Root do
-  alias Repository.Local, as: Repo
-  require Keys
+defmodule Hinter.Model.Root do
+  alias Hinter.Repository.Local, as: Repo
+  require Hinter.Ui
+  require Hinter.Keys
 
   def init() do
     %{
-      tab: 0,
-      value: Repo.value(0),
+      tab_index: 0,
       input: ""
     }
   end
 
   def update(model, msg) do
     case msg do
-      {:event, %{key: Keys.left()}} ->
+      {:event, %{key: Hinter.Keys.left()}} ->
         %{
           model
-          | tab: Integer.mod(model.tab - 1, 2),
+          | tab_index: Integer.mod(model.tab_index - 1, 2),
             input: ""
         }
 
-      {:event, %{key: Keys.right()}} ->
+      {:event, %{key: Hinter.Keys.right()}} ->
         %{
           model
-          | tab: Integer.mod(model.tab + 1, 2),
+          | tab_index: Integer.mod(model.tab_index + 1, 2),
             input: ""
         }
 
-      {:event, %{key: Keys.enter()}} ->
-        save_hint(model.tab, model.input)
+      {:event, %{key: Hinter.Keys.enter()}} ->
+        save_hint(model.tab_index, model.input)
         model
 
-      {:event, %{key: key}} when key in Keys.delete_keys() ->
+      {:event, %{key: key}} when key in Hinter.Keys.delete_keys() ->
         %{
           model
           | input: String.slice(model.input, 0..-2)
         }
 
-      {:event, %{key: Keys.space()}} ->
+      {:event, %{key: Hinter.Keys.space()}} ->
         %{
           model
           | input: model.input <> " "

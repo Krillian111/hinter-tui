@@ -1,4 +1,4 @@
-defmodule Ui do
+defmodule Hinter.Ui do
   use Const
 
   @add :add

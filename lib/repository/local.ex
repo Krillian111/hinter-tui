@@ -1,4 +1,4 @@
-defmodule Repository.Local do
+defmodule Hinter.Repository.Local do
   use Agent
 
   def start_link(_initial_value) do

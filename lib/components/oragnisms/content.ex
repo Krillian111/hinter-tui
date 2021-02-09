@@ -1,6 +1,6 @@
-defmodule Organisms.Content do
+defmodule Hinter.Organisms.Content do
   import Ratatouille.View
-  alias Repository.Local, as: Repo
+  alias Hinter.Repository.Local, as: Repo
 
   def render(tab, input) do
     row do

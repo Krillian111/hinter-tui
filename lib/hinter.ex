@@ -1,9 +1,9 @@
-defmodule Hinter do
+defmodule Hinter.App do
   @behaviour Ratatouille.App
 
-  require Ui
-  alias Model.Root, as: Model
-  alias Pages.{Add, Remove}
+  alias Hinter.Model.Root, as: Model
+  alias Hinter.Pages.{Add, Remove}
+  require Hinter.Ui
 
   def init(_context) do
     Model.init()
@@ -14,12 +14,12 @@ defmodule Hinter do
   end
 
   def render(model) do
-    case Ui.tab_sequence()[model.tab] do
+    tab = Hinter.Ui.tab_sequence()[model.tab_index]
+
+    case tab do
       :add -> Add.render(model)
       :rmv -> Remove.render(model)
     end
   end
 end
 
-Repository.Local.start_link("")
-Ratatouille.run(Hinter)
